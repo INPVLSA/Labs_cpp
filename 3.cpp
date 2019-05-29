@@ -142,7 +142,7 @@ void print_end(List *p) {
 }
 
 void print(){
-    std::cout << "Вывести список элемент:\n\t1. С начала\n\t2. С конца\n";
+    std::cout << "Вывести список:\n\t1. С начала\n\t2. С конца\n";
     switch (answer()){
         case 1:
             print_begin(begin);
@@ -156,41 +156,12 @@ void print(){
     }
 }
 
-
-
-void menu(){
-    int a = 0;
-    std::cout << "Выберите действие: \n\t1. Создать\n\t2. Добавить\n\t3. Просмотреть\n\t4. Удалить\n\t5. Удалить максимальный элемент списка\n\t0. Выход\n";
-    switch(answer()){
-        case 1:
-            init();
-            break;
-        case 2:
-            add_to_list();
-            break;
-        case 3:
-            print();
-            break;
-        case 4:
-            delete_list(&begin);
-            delete begin, end;
-            break;
-        case 5:
-            delete_max(&begin);
-            // delete_every_2(&bbegin);
-            break;
-        case 0:
-            return;
-            break;
-        default:
-            std::cout << "Ошибка: Введите корректное значение\n";
-            break;
-    }
-    menu();
-}
-
 int main(){
     setlocale(LC_ALL, "Rus");
-    menu();
+    init();
+    add_to_list();
+    print();
+    delete_list(&begin);
+    delete_max(&begin);
     return 0;
 }

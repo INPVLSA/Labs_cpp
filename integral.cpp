@@ -1,22 +1,35 @@
 #include <iostream>
-#include <math.h>
-
+#include <cmath>
+#include <clocale>
 using namespace std;
- 
-float f(float x){
-	return pow(sin(x), 2) - 3 * cos(x);
+
+float f(float x) {
+  return pow(sin(x), 2) - 3 * cos(x);
 }
 
 int main() {
-	int a = 1, b = 7, n = 0;
-	cout << "n = ";
-	cin >> n;
-	float s = ( f(a) + f(b) ) / 2;
-	float h = ( b - a ) / n;
-	for (int i = 1; i <= n-1; i++)
-		s += f ( a + i * h );
-	float I = h * s;
+  setlocale(LC_ALL, "rus");
+  int a, b; // границы отрезка интегрирования
+  cout << "Введите границы интрегрирования: " << endl;
+  cin >> a >> b;
+  if (a > b) {
+    int c;
+    c = a;
+    a = b;
+    b = c;
+  }
+  float h; // шаг
+  cout << "Введите точность: " << endl;
+  cin >> h;
+  float n; // число разбиений
+  n = (b - a) / h;
+  double integral = 0.0;
+  //------------метод трапеций ------------
+  integral = h * (f(a) + f(b)) / 2.0;
+  for (int i = 1; i <= n - 1; i++)
+    integral = integral + h * f(a + h * i);
+  cout << "I = " << integral << "\n";
 
-	cout << "Answer = " << I << endl;
-	return 0;
+  system("pause");
+  return 0;
 }

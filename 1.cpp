@@ -6,7 +6,7 @@ float calcByRule(float x, int n){
 	if(n % 2 == 0 && n != 0)
 		return pow((pow(x, n/2)), 2);
 	else
-		return x*calcByRule(y, (n-1));
+		return x * calcByRule(y, (n-1));
 }
 
 int main(){
